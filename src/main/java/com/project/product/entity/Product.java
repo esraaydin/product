@@ -79,6 +79,11 @@ public class Product {
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
+
+
+    public long getProductid() {
+        return 0;
+    }
     
     
 }
