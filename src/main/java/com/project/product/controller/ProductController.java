@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,31 +27,29 @@ public class ProductController {
         return productService.getAllProduct();
     }
 
-    @GetMapping("/product/{productid}")
+    @GetMapping("/product/{id}")
 
-    private Product getProduct(@PathVariable("productid")long productid){
-        return productService.getProductById(productid);
-
-    }
-    @DeleteMapping("/product/{productid}")
-    private void deleteProduct(@PathVariable("productid")long productid){
-
-        productService.delete(productid);
+    private Product getProduct(@PathVariable Long id){
+        return productService.getProductById(id);
 
     }
 
     @PostMapping("/product")
 
-    private long saveProduct(@RequestBody Product product){
-        productService.saveOrUpdate(product);
-        return product.getProductid();
+    private Product saveOrUpdate(@RequestBody Product product){
+        return productService.createProduct(product);
     }
 
-    @PutMapping("/product/{productid}")
+    @DeleteMapping("/product/{id}")
+    private void deleteProduct(@PathVariable Long id){
 
-    private Product update(@RequestBody Product product){
-        productService.saveOrUpdate(product);
-        return product;
+        productService.deleteProduct(id);
+
+    }
+    @PutMapping(value = "/product")
+    private Product updateProduct(@RequestBody Product product){
+        return productService.updateProduct(product);
+
 
     }
 }

@@ -16,12 +16,9 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository; 
 
-    List<Product> getAllProduct;
-
     public List<Product> getAllProduct() {
-        List<Product> product= new ArrayList<Product>();
-        productRepository.findAll().forEach(product1 -> product.add(product1));
-        return product;
+        return productRepository.findAll();
+        
     }    
 
     public Product getProductById(long id){
@@ -29,18 +26,24 @@ public class ProductService {
         return productRepository.findById(id).get();
     }
 
-    public void saveOrUpdate(Product product){
+    public Product saveOrUpdate(Product product){
 
-        productRepository.save(product);
+        return productRepository.save(product);
     }
 
-    public void delete(long id){
+    public Product createProduct(Product product) {
+        return saveOrUpdate(product);
+    }
+
+    public void deleteProduct(long id){
 
         productRepository.deleteById(id);
     }
 
-    public void update(Product product, long productid){
+    public Product updateProduct(Product product){
 
-        productRepository.save(product);
+        return productRepository.save(product);
     }
 }
+
+
