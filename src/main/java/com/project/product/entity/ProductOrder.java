@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.criteria.Order;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -22,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
     
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
-        private Long orderId;
+        private Long productOrderId;
     
         @Column(name="code", length = 64 ,nullable = false)
         private String code;
@@ -44,7 +43,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
         @JsonFormat(pattern = "dd-MM-yyyy")
         Date orderDate;
 
-        
         @ManyToOne
         @JoinColumn(name = "product_id")
         private Product product;
@@ -53,9 +51,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
         public ProductOrder() {
         }
     
-        public ProductOrder(Long orderId, String code, Boolean active, Integer amount, Long totalPrice, Date deliveryDate,
+        public ProductOrder(Long productOrderId, String code, Boolean active, Integer amount, Long totalPrice, Date deliveryDate,
                 Date orderDate, Product product) {
-            this.orderId = orderId;
+            this.productOrderId = productOrderId;
             this.code = code;
             this.active = active;
             this.amount = amount;
@@ -65,12 +63,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
             this.product = product;
         }
     
-        public Long getOrderId() {
-            return orderId;
+        public Long getproductOrderId() {
+            return productOrderId;
         }
     
-        public void setOrderId(Long orderId) {
-            this.orderId = orderId;
+        public void setproductOrderId(Long productOrderId) {
+            this.productOrderId = productOrderId;
         }
     
         public String getCode() {
@@ -129,7 +127,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
             this.product = product;
         }
 
-        public static ProductOrder updateOrder(Order order) {
+        public static ProductOrder updateOrder(ProductOrder productOrder) {
+            return null;
+        }
+
+        public ProductOrder updateproductOrder(ProductOrder productOrder) {
             return null;
         }
     

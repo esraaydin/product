@@ -2,8 +2,6 @@ package com.project.product.controller;
 
 import java.util.List;
 
-import javax.persistence.criteria.Order;
-
 import com.project.product.entity.ProductOrder;
 import com.project.product.service.ProductOrderService;
 
@@ -22,36 +20,37 @@ import org.springframework.web.bind.annotation.PutMapping;
 @Controller
 public class ProductOrderController {
 
+    private static final ProductOrder ProductOrder = null;
     @Autowired
-    ProductOrderService orderService;
+    ProductOrderService productOrderService;
 
-    @GetMapping("/order")
-    private List<ProductOrder> getAllOrders(){
-        return orderService.getAllOrders();
+    @GetMapping("/productOrder")
+    private List<ProductOrder> getAllproductOrder(){
+        return productOrderService.getAllProductOrder();
     }
 
-    @GetMapping("/order/{id}")
+    @GetMapping("/productOrder/{id}")
 
-    private ProductOrder getOrder(@PathVariable long id){
-        return orderService.getOrderByıd(id);
-
-    }
-
-    @PostMapping("/order")
-
-    private ProductOrder saverOrUpdate(@RequestBody Order order){
-        return orderService.createOrder(order);
+    private ProductOrder getproductOrder(@PathVariable long id){
+        return productOrderService.getproductOrderByıd(id);
 
     }
-    @DeleteMapping("/order/{id}")
-    private void deleteOrder(@PathVariable Long id){
 
-        orderService.deleteOrder(id);
+    @PostMapping("/productOrder")
+
+    private ProductOrder saverOrUpdate(@RequestBody ProductOrder productOrder){
+        return productOrderService.createproductOrder(productOrder);
+
+    }
+    @DeleteMapping("/productOrder/{id}")
+    private void deleteproductOrder(@PathVariable Long id){
+
+        productOrderService.deleteproductOrder(id);
     }
 
-    @PutMapping(value="/order")
-    private ProductOrder updateOrder(@RequestBody Order order){
-        return ProductOrder.updateOrder(order);
+    @PutMapping(value="/productOrder")
+    private ProductOrder updateProductOrder(@RequestBody ProductOrder productOrder){
+        return productOrderService.updateProductOrder(productOrder);
     }
     
 }
